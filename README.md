@@ -32,7 +32,7 @@ Creating this web application will provide exposure to:
 - Variables, functions, css classes, etc. are meaningfully named (no comments exist in code to explain functionality - the names serve that function)
 - Functions are small and serve a single purpose
 - Code is well organized into a meaningful file structure
-- Code is reasonably tested with a test suite
+- Code is reasonably tested with a Mocha test suite
 - Interface is user friendly
 
 ## Resources
