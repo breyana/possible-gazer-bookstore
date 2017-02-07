@@ -72,11 +72,11 @@ function getSingleGenre(request, response, next) {
 }
 
 function createBook(request, response, next) {
-  db.none('INSERT INTO books (title, author, genre, publish_year)' +
-      'VALUES (${title}, ${author}, ${genre}, ${publish_year})')
+  const {title, author, genre, publish_year} = request.body
+  db.none(`INSERT INTO books (title, author, genre, publish_year)
+      VALUES (${title}, ${author}, ${genre}, ${publish_year})`)
     .then(function(data) {
-      response.status(200)
-        .json({
+        response.json({
           status: 'success',
           data: data,
           message: 'created a book'
