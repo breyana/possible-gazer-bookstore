@@ -8,8 +8,9 @@ CREATE TABLE books (
   title VARCHAR,
   author VARCHAR,
   genre VARCHAR,
-  publish_year INTEGER
+  publish_year INTEGER,
+  img VARCHAR
 );
 
-INSERT INTO books (title, author, genre, publish_year)
-  VALUES ('Make up', 'stuff to', 'fill in', '1982');
+INSERT INTO books (title, author, genre, publish_year, img)
+  VALUES ('Make up', 'stuff to', 'fill in', '1982', 'http://i1.wp.com/brittwd.com/wp-content/uploads/2017/01/how-bow-dah.jpg');

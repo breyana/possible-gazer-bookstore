@@ -3,5 +3,13 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://unpkg.com/packery@2/dist/packery.pkgd.min.js')
   body
+    section
+      #navigation-container
+        a(href='/') Home
+        form.search
+          input#search-box(type='text', value='Enter a Book Title or Author')
+          button#search-button(type='submit', name='button') Search
+
     block content

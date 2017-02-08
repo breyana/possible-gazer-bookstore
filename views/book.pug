@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= books.title
+  p
+    a(href='/author/'+ books.author) #{books.author}
+  p
+    a(href='/genre/'+ books.genre) #{books.genre}
+  p
+    a(href='/published/'+ books.publish_year) Publish Date: #{books.publish_year}
+  p
+    img(src=books.img class='bookcover')

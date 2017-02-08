@@ -1,9 +1,8 @@
 extends layout
 
 block content
-  h1= title
-
-  p Welcome to #{title}
+  h1= "All " + title + " books"
+  p
   .grid(data-packery='{ "itemSelector": ".grid-item", "gutter": 10 }')
     ul.grid-item
       each book in books
