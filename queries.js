@@ -12,7 +12,7 @@ function getAllBooks(request, response, next) {
   db.any('SELECT * FROM books')
     .then(function(data) {
       response.render('index', {
-        title: "BOOKSTORRREEE",
+        title: "Wreka Stow",
         books: data
       })
     })
