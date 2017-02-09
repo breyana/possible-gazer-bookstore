@@ -15,9 +15,9 @@ Creating this web application will provide exposure to:
 
 ## Specifications
 - [ ] Any user can add books into the system
-- [ ] Books entered in the system are listed on the home page, in pages of 10
-- [ ] Users can search for books by title OR by author OR by genre, and search results will be presented in a new page
-- [ ] Users can view book details on a book detail page, linked to from the listing or search pages
+- [X] Books entered in the system are listed on the home page, in pages of 10
+- [X] Users can search for books by title OR by author OR by genre, and search results will be presented in a new page
+- [X] Users can view book details on a book detail page, linked to from the listing or search pages
 
 ## Stretch Goal
 - [ ] Add authorization
@@ -25,7 +25,7 @@ Creating this web application will provide exposure to:
 - [ ] Host database on AWS
 
 ### Required
-- [ ] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
+- [X] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Quality Rubric
 - Code is well formatted without any linting errors
