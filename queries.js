@@ -78,14 +78,26 @@ function getSinglePublishYear(request, response, next) {
 }
 
 function createBook(request, response, next) {
-  const {title, author, genre, publish_year} = request.body
-  db.none(`INSERT INTO books (title, author, genre, publish_year)
-      VALUES (${title}, ${author}, ${genre}, ${publish_year})`)
+  const { title, author, genre, publish_year, img } = request.params
+  db.any(`INSERT INTO books (title, author, genre, publish_year, img)
+      VALUES ('title', 'author', 'genre', '1234', 'img')`)
     .then(function(data) {
-        response.json({
-          status: 'success',
-          data: data,
-          message: 'created a book'
+        response.render('post', {
+          title: title,
+          books: data
+        })
+    })
+    .catch(function(err) {
+      return next(err)
+    })
+}
+
+function addingBook(request, response, next) {
+  db.any('SELECT * FROM books')
+    .then(function(data) {
+        response.render('post', {
+          title: "Wreka Stow",
+          books: data
         })
     })
     .catch(function(err) {
@@ -99,5 +111,6 @@ module.exports = {
   getSingleAuthor,
   getSingleGenre,
   createBook,
-  getSinglePublishYear
+  getSinglePublishYear,
+  addingBook
 }
