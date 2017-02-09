@@ -8,45 +8,17 @@ const pgp = require('pg-promise')(options)
 const connectionString = 'postgres://localhost:5432/possiblegazerbookstore'
 const db = pgp(connectionString)
 
-function getAllBooks(request, response, next) {
-  db.any('SELECT * FROM books')
-    .then(function(data) {
-      response.render('index', {
-        title: "Wreka Stow",
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
-}
+const getAllBooks = () => db.any( 'SELECT * FROM books' )
 
-function getSingleBook(request, response, next) {
-  const bookID = request.params.id
+
+const getSingleBook = (request, response) => {
+  let bookID = request.params.id
   db.one('SELECT * FROM books WHERE id = $1', bookID)
-    .then(function(data) {
-      response.render('book', {
-        title: data.title,
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
 }
 
-function getSingleAuthor(request, response, next) {
+const getSingleAuthor = () => {
   const author = request.params.author
   db.any('SELECT * FROM books WHERE author = $1', author)
-  .then(function(data) {
-    response.render('author', {
-      title: author,
-      books: data
-    })
-  })
-  .catch(function(err) {
-    return next(err)
-  })
 }
 
 function getSingleGenre(request, response, next) {
