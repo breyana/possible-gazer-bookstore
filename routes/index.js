@@ -16,12 +16,11 @@ router.get('/', ( request, response, next ) => {
   })
 });
 
-router.get('/book/:id', ( request, response, next ) =>
-console.log( 'request--->>>', request )
-  queries.getSingleBook()
+router.get('/book/:id', ( request, response, next ) => {
+  queries.getSingleBook( request, response )
   .then( data => {
     response.render('book', {
-      title: title,
+      title: data.title,
       books: data
     })
   })
@@ -31,10 +30,10 @@ console.log( 'request--->>>', request )
 });
 
 router.get('/author/:author', ( request, response, next ) => {
-  queries.getSingleAuthor()
-  .then(function(data) {
+  queries.getSingleAuthor( request, response )
+  .then( data => {
     response.render('author', {
-      title: author,
+      title: request.params.author,
       books: data
     })
   })
@@ -43,11 +42,11 @@ router.get('/author/:author', ( request, response, next ) => {
   })
 });
 
-router.get('/genre/:genre', () => {
-  queries.getSingleGenre()
+router.get('/genre/:genre', ( request, response, next ) => {
+  queries.getSingleGenre( request, response )
   .then(function(data) {
     response.render('genre', {
-      title: genre,
+      title: request.params.genre,
       books: data
     })
   })
@@ -56,10 +55,46 @@ router.get('/genre/:genre', () => {
   })
 });
 
+router.get('/published/:publish_year', ( request, response, next ) => {
+  queries.getSinglePublishYear( request, response )
+    .then(function(data) {
+      response.render('year', {
+        title: request.params.publish_year,
+        books: data
+      })
+    })
+    .catch(function(err) {
+      return next(err)
+    })
+});
 
-router.get('/published/:publish_year', queries.getSinglePublishYear);
-router.get('/post', queries.addingBook);
-router.post('/post', queries.createBook)
+router.get('/post', ( request, response, next ) => {
+  queries.addingBook( request, response )
+    .then(function(data) {
+        response.render('post', {
+          title: "Wreka Stow",
+          books: data
+        })
+    })
+    .catch(function(err) {
+      return next(err)
+    })
+});
+
+
+router.post('/post', ( request, response, next ) => {
+  queries.createBook( request, response )
+    .then(function(data) {
+      response.render('post', {
+        title: title,
+        books: data
+      })
+    })
+    .catch(function(err) {
+      return next(err)
+    })
+
+});
 
 
 
