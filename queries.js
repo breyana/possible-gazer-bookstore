@@ -98,5 +98,6 @@ module.exports = {
   getSingleBook,
   getSingleAuthor,
   getSingleGenre,
-  createBook
+  createBook,
+  getSinglePublishYear
 }

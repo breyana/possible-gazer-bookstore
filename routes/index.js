@@ -7,11 +7,7 @@ router.get('/', queries.getAllBooks);
 router.get('/author/:author', queries.getSingleAuthor);
 router.get('/genre/:genre', queries.getSingleGenre);
 router.get('/book/:id', queries.getSingleBook);
-//router.get('/published/:publish_year', queries.getSinglePublishYear)
-// router.get('/testpage', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
+router.get('/published/:publish_year', queries.getSinglePublishYear)
 router.post('/post', queries.createBook);
 
 
