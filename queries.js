@@ -37,9 +37,11 @@ const addingBook = (request, response, next) => {
 }
 
 const createBook = (request, response, next) => {
-  const { title, author, genre, publish_year, img } = request.params
-  return db.any(`INSERT INTO books (title, author, genre, publish_year, img)
-  VALUES ('title', 'author', 'genre', '1234', 'img')`)
+  const  { title, author, genre, publish_year, img } = request.body
+  console.log(title)
+  return db.one(`INSERT INTO books (title, author, genre, publish_year, img)
+  VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+  [title, author, genre, publish_year, img])
 }
 
 module.exports = {

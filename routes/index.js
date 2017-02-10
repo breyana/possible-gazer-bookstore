@@ -71,7 +71,7 @@ router.get('/published/:publish_year', ( request, response, next ) => {
 router.get('/post', ( request, response, next ) => {
   queries.addingBook( request, response )
     .then(function(data) {
-        response.render('post', {
+        response.render('addbook', {
           title: "Wreka Stow",
           books: data
         })
@@ -85,10 +85,7 @@ router.get('/post', ( request, response, next ) => {
 router.post('/post', ( request, response, next ) => {
   queries.createBook( request, response )
     .then(function(data) {
-      response.render('post', {
-        title: title,
-        books: data
-      })
+      response.redirect(`/book/${data.id}`)
     })
     .catch(function(err) {
       return next(err)
