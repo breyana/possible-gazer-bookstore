@@ -14,9 +14,9 @@ Creating this web application will provide exposure to:
 
 
 ## Specifications
-- [ ] Any user can add books into the system
+- [X] Any user can add books into the system
 - [X] Books entered in the system are listed on the home page, in pages of 10
-- [X] Users can search for books by title OR by author OR by genre, and search results will be presented in a new page
+- [ ] Users can search for books by title OR by author OR by genre, and search results will be presented in a new page
 - [X] Users can view book details on a book detail page, linked to from the listing or search pages
 
 ## Stretch Goal
