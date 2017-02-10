@@ -8,101 +8,40 @@ const pgp = require('pg-promise')(options)
 const connectionString = 'postgres://localhost:5432/possiblegazerbookstore'
 const db = pgp(connectionString)
 
-function getAllBooks(request, response, next) {
-  db.any('SELECT * FROM books')
-    .then(function(data) {
-      response.render('index', {
-        title: "Wreka Stow",
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
-}
+const getAllBooks = () => db.any( 'SELECT * FROM books' )
 
-function getSingleBook(request, response, next) {
+
+const getSingleBook = (request, response) => {
   const bookID = request.params.id
-  db.one('SELECT * FROM books WHERE id = $1', bookID)
-    .then(function(data) {
-      response.render('book', {
-        title: data.title,
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
+  return db.one('SELECT * FROM books WHERE id = $1', bookID)
 }
 
-function getSingleAuthor(request, response, next) {
+const getSingleAuthor = (request, response) => {
   const author = request.params.author
-  db.any('SELECT * FROM books WHERE author = $1', author)
-  .then(function(data) {
-    response.render('author', {
-      title: author,
-      books: data
-    })
-  })
-  .catch(function(err) {
-    return next(err)
-  })
+  return db.any('SELECT * FROM books WHERE author = $1', author)
 }
 
-function getSingleGenre(request, response, next) {
+const getSingleGenre = (request, response, next) => {
   const genre = request.params.genre
-  db.any('SELECT * FROM books WHERE genre = $1', genre)
-    .then(function(data) {
-      response.render('genre', {
-        title: genre,
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
+  return db.any('SELECT * FROM books WHERE genre = $1', genre)
 }
 
-function getSinglePublishYear(request, response, next) {
+const getSinglePublishYear = (request, response, next) => {
   const year = request.params.publish_year
-  db.any('SELECT * FROM books WHERE publish_year = $1', year)
-    .then(function(data) {
-      response.render('year', {
-        title: year,
-        books: data
-      })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
+  return db.any('SELECT * FROM books WHERE publish_year = $1', year)
 }
 
-function createBook(request, response, next) {
-  const { title, author, genre, publish_year, img } = request.params
-  db.any(`INSERT INTO books (title, author, genre, publish_year, img)
-      VALUES ('title', 'author', 'genre', '1234', 'img')`)
-    .then(function(data) {
-        response.render('post', {
-          title: title,
-          books: data
-        })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
+
+const addingBook = (request, response, next) => {
+  return db.any('SELECT * FROM books')
 }
 
-function addingBook(request, response, next) {
-  db.any('SELECT * FROM books')
-    .then(function(data) {
-        response.render('post', {
-          title: "Wreka Stow",
-          books: data
-        })
-    })
-    .catch(function(err) {
-      return next(err)
-    })
+const createBook = (request, response, next) => {
+  const  { title, author, genre, publish_year, img } = request.body
+  console.log(title)
+  return db.one(`INSERT INTO books (title, author, genre, publish_year, img)
+  VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+  [title, author, genre, publish_year, img])
 }
 
 module.exports = {

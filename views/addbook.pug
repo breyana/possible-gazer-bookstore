@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= "Add a book to the " + title
+  form(method='POST', action='/post' class='forms')
+    p(class='formtitle') Title:
+      input(type='text', placeholder='title', name='title')
+    p(class='formtitle') Author:
+      input(type='text', placeholder='author', name='author')
+    p(class='formtitle') Genre:
+      input(type='text', placeholder='genre', name='genre')
+    p(class='formtitle') Publish Year:
+      input(type='text', placeholder='publish year', name='publish_year')
+    p(class='formtitle') Image URL:
+      input(type='text', placeholder='image URL', name='img')
+    button(class='formbutton') submit
