@@ -71,10 +71,10 @@ router.get('/published/:publish_year', ( request, response, next ) => {
 router.get('/post', ( request, response, next ) => {
   queries.addingBook( request, response )
     .then(function(data) {
-        response.render('addbook', {
-          title: "Wreka Stow",
-          books: data
-        })
+      response.render('addbook', {
+        title: "Wreka Stow",
+        books: data
+      })
     })
     .catch(function(err) {
       return next(err)
@@ -93,6 +93,19 @@ router.post('/post', ( request, response, next ) => {
 
 });
 
+
+router.post('/search', (request, response, next) => {
+  queries.searchBooks(request, response)
+    .then(function(data) {
+      response.render('searchresults', {
+        title: request.body.userSearch,
+        books: data
+      })
+    })
+    .catch(function(err) {
+      return next(err)
+    })
+})
 
 
 module.exports = router;

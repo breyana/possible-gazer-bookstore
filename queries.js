@@ -44,6 +44,20 @@ const createBook = (request, response, next) => {
   [title, author, genre, publish_year, img])
 }
 
+const searchBooks = (request, response, next) => {
+  const userSearch = request.body.userSearch
+    .toLowerCase()
+    .replace(/^ */, '%')
+    .replace(/ *$/, '%')
+    .replace(/ +/g, '%')
+  return db.any(`SELECT id, title, author, genre, img FROM books
+    WHERE LOWER(title) LIKE $1
+    OR LOWER(author) LIKE $1
+    OR LOWER(genre) LIKE $1`, [userSearch])
+}
+
+
+
 module.exports = {
   getAllBooks,
   getSingleBook,
@@ -51,5 +65,6 @@ module.exports = {
   getSingleGenre,
   createBook,
   getSinglePublishYear,
-  addingBook
+  addingBook,
+  searchBooks
 }
