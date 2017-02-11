@@ -2,15 +2,22 @@ doctype html
 html
   head
     title= title
+    //- drop our CDN here, it points to MUI css host
+    //- CSS Link go in the Header
+    link(href="http://cdn.muicss.com/mui-0.9.9-rc2/css/mui.min.css" rel="stylesheet" type="text/css")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://unpkg.com/packery@2/dist/packery.pkgd.min.js')
   body
+    img(src='http://i.imgur.com/5E6oAQB.png' class='icon')
     section
-      #navigation-container
-        a(href='/') Home
-        a(href='/post') Add Book
-        form.search
-          input#search-box(type='text', placeholder='Enter a Title, Author or Genre')
-          button#search-button(type='submit', name='button') Search
+      #navigation-container.mui-row
+        button.mui-btn.mui-col-md-1(href='/' class='home navlink') Home
+        button.mui-btn.mui-col-md-1(href='/post' class='addbook navlink') Add Book
+        form.search.mui-row(method='post' action='/search')
+          button#search-button.mui-btn(type='submit' name='button' value='search') Search
+          input#search-box(type='text' placeholder='Title, Author or Genre' name='userSearch')
 
     block content
+    //- drop our CDN here, it points to MUI css host
+    //- script tags go in the botton of the body
+    script(src='http://cdn.muicss.com/mui-0.9.9-rc2/js/mui.min.js')
+    script(src='https://unpkg.com/packery@2/dist/packery.pkgd.min.js')
