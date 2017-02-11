@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS possiblegazerbookstore;
-CREATE DATABASE possiblegazerbookstore;
+DROP DATABASE IF EXISTS possiblegazer-wreckastow;
+CREATE DATABASE possiblegazer-wreckastow;
 
-\c possiblegazerbookstore;
+\c possiblegazer-wreckastow;
 
 DROP TABLE IF EXISTS books;
 CREATE TABLE books (
