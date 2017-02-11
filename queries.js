@@ -5,7 +5,9 @@ const options = {
 }
 
 const pgp = require('pg-promise')(options)
-const connectionString = 'postgres://localhost:5432/possiblegazerbookstore'
+const connectionString = process.env.NODE_ENV === 'development'
+  ? 'postgres://localhost:5432/possiblegazerbookstore'
+  : process.env.DATABASE_URL
 const db = pgp(connectionString)
 
 const getAllBooks = () => db.any( 'SELECT * FROM books' )
