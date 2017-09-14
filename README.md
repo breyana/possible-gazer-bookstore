@@ -22,7 +22,7 @@ Creating this web application will provide exposure to:
 ## Stretch Goal
 - [ ] Add authorization
 - [ ] Any user can add books into the system via an admin page
-- [ ] Host database on AWS
+- [X] Host database on Heroku: https://possiblegazer-wreckastow.herokuapp.com/
 
 ### Required
 - [X] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
